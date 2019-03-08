@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2016, 2020, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2016, 2019, The Linux Foundation. All rights reserved.
+>>>>>>> 80646a7a511df... drivers: hwmon: Fix compilation errors in ADC for kernel 4.9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
