@@ -40,4 +40,22 @@ EXTRA_CFLAGS += -DTFA_DEBUG -DDEBUG
 snd-soc-tfa9874-objs += tfa_debug.o
 endif
 
-obj-$(CONFIG_SND_SOC_TFA9874) := snd-soc-tfa9874.o
+ifeq ($(CONFIG_MACH_ASUS_SDM660),y)
+EXTRA_CFLAGS += -DTFA9874_NONDSP_STEREO
+endif
+
+else
+
+MAKEARCH := $(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+
+all:
+	$(MAKEARCH) -C $(KDIR) M=$(PWD) modules
+
+clean:
+	$(MAKEARCH) -C $(KDIR) M=$(PWD) clean
+	rm -f $(snd-soc-tfa98xx-objs)
+
+endif
+
+subdir-ccflags-y := $(call cc-disable-warning, enum-conversion)
+>>>>>>> ad6d9d898ee7c... Sound: Soc: tfa9874: Disable enum-conversion warning
