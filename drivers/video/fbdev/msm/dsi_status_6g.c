@@ -113,8 +113,6 @@ void mdss_check_dsi_ctrl_status(struct work_struct *work, uint32_t interval)
 	if (ctrl_pdata->status_mode == ESD_TE) {
 		if (mdss_check_te_status(ctrl_pdata, pstatus_data, interval))
 			return;
-		else
-			goto status_dead;
 	}
 
 
@@ -181,20 +179,5 @@ void mdss_check_dsi_ctrl_status(struct work_struct *work, uint32_t interval)
 		}
 		else {
 			pstatus_data->is_first_check = 0;
-			goto status_dead;
 		}
 	}
-/* Huaqin duchangguo modify for disabling esd check when panel is not connect before boot end*/
-
-	if (pdata->panel_info.panel_force_dead) {
-		pr_debug("force_dead=%d\n", pdata->panel_info.panel_force_dead);
-		pdata->panel_info.panel_force_dead--;
-		if (!pdata->panel_info.panel_force_dead)
-			goto status_dead;
-	}
-
-	return;
-
-status_dead:
-	mdss_fb_report_panel_dead(pstatus_data->mfd);
-}
