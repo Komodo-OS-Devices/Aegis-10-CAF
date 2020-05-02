@@ -5,7 +5,7 @@ export ARCH=arm64
 
 make O=out ARCH=arm64 aegis_defconfig
 
-PATH="/home/wahyuh/project/clang10/bin:/home/wahyuh/project/gcc/bin:$PATH" \
+PATH="/home/wahyu/project/clang10/bin:/home/wahyu/project/gcc/bin:$PATH" \
 
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
